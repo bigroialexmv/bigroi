@@ -14,8 +14,6 @@ public class CollectionApplication {
 		a.add(2);
 		
 		
-		a.
-		
 		for(int i=0;i<a.size();i++)
 		{
 			System.out.println(a.get(i));
