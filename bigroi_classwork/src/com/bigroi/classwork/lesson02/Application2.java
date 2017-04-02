@@ -15,7 +15,7 @@ public class Application2 {
 		Integer xx = new Integer(2); 
 		//Integer xx = 2;
 		//String x = "sdsd";
-		Integer yy = new Integer(3); // = 13
+		Integer yy = new Integer(3); // = 3
 		
 		print(xx, yy);
 		yy = xx;
