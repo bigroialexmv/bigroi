@@ -2,10 +2,8 @@ package com.bigroi.classwork.lesson02;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Stack;
 
 public class CollectionsApllication {
@@ -19,17 +17,17 @@ public class CollectionsApllication {
 		System.out.println( a.get(1) );
 		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("iteration", "итерация");
-		map.put("collection", "коллекция");
-		map.put("cycle", "цикл");
-		map.put("cycle2", "цикл");
+		map.put("iteration", "РёС‚РµСЂР°С†РёСЏ");
+		map.put("collection", "РєРѕР»Р»РµРєС†РёСЏ");
+		map.put("cycle", "С†РёРєР»");
+		map.put("cycle2", "С†РёРєР»");
 		
 		System.out.println( map.get("iteration")  );
 		
 		if ( map.containsKey("iteration") ) {
 			System.out.println (map.get("iteration"));
 		} else {
-			System.out.println ("Слово не найдено");
+			System.out.println ("РЎР»РѕРІРѕ РЅРµ РЅР°Р№РґРµРЅРѕ");
 		}
 		
 		Stack<String> stack = new Stack<String>();
