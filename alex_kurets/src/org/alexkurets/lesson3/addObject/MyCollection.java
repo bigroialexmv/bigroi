@@ -10,7 +10,7 @@ public class MyCollection implements Iterable<Integer> {
 	
 	public MyCollection(int a)
 	{
-		store=new Integer[a];
+		//store=new Integer[a];
 	}
 	
 	@Override
