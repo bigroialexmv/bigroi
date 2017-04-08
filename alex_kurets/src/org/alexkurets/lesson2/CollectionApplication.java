@@ -21,10 +21,10 @@ public class CollectionApplication {
 		
 		Map<String, String> map=new HashMap<>();
 		
-		map.put("iteration", "итерация");
-		map.put("collection", "коллекция");
-		map.put("map", "карта");
-		map.put("map", "местность");
+		map.put("iteration", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		map.put("collection", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		map.put("map", "пїЅпїЅпїЅпїЅпїЅ");
+		map.put("map", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		
 		
 		System.out.println(map.get("map"));
