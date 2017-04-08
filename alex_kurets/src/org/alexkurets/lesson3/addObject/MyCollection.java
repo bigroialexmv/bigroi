@@ -2,10 +2,14 @@ package org.alexkurets.lesson3.addObject;
 
 import java.util.Iterator;
 
-public class MyCollection<T> implements Iterable<T> {
 
+
+public class MyCollection implements Iterable<Integer> {
+
+	private Integer [] store = new Integer[10]; 
+	
 	@Override
-	public Iterator<T> iterator() {
+	public Iterator<Integer> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
