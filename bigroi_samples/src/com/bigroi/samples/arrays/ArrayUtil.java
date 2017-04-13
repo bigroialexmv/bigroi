@@ -6,7 +6,7 @@ public class ArrayUtil {
 	 * Создает массив случайных целых чисел
 	 * 
 	 * @param length - длина создаваемого массива
-	 * @return массив целых чисел
+	 * @return массив случайных целых чисел
 	 */
 	public static int[] createRandomArray(int length) {
 		int[] a = new int[length];
@@ -17,7 +17,7 @@ public class ArrayUtil {
 	}
 	
 	/**
-	 * Создает случайный массив целых чисел, отсортированный по возрастанию
+	 * Создает случайный массив целых чисел, отсортированный по возрастанию 
 	 * 
 	 * @param length - длина создаваемого массива
 	 * @return массив целых чисел, расположенных по возрастанию
@@ -31,12 +31,16 @@ public class ArrayUtil {
 		return a;
 	}
 	
+	/**
+	 * Возвращает случайное целое число число от 1 до 101
+	 * @return случайное целое число от 1 до 101
+	 */
 	public static int randomInt() {
 		return Math.abs( (int) (Math.random()*100) ) + 1;
 	}
 	
 	/**
-	 * Находит индекс элемента x отсортированного массива a методом деления пополам
+	 * Находит индекс элемента x отсортированного по возрастанию массива a методом деления пополам
 	 * 
 	 * @param a - массив целых чисел
 	 * @param x - искомый элемент массива
@@ -49,7 +53,7 @@ public class ArrayUtil {
 		
 		while ( (q - p) > 1 ) {
 			i = p + (q - p) / 2;
-			if (a[i] == x) {
+			if ( a[i] == x ) {
 				return i;
 			} else if ( a[i] > x ) {
 				q = i;
@@ -58,16 +62,16 @@ public class ArrayUtil {
 			}
 		}
 		
-		if (a[q] == x) {
+		if ( a[q] == x ) {
 			return q;
-		} else if (a[p] == x) {
+		} else if ( a[p] == x ) {
 			return p;
 		}
 		return -1;
 	}
 	
 	public static void print(int[] a) {
-		for(int i = 0; i < a.length; i ++) { // i++  i = i + 1
+		for(int i = 0; i < a.length; i ++) { // i++   <=>   i = i + 1
 			System.out.print( a[i] );
 			System.out.print( " " );
 		}
