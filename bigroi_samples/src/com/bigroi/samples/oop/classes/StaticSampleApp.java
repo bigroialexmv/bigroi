@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bigroi.samples.classes;
+package com.bigroi.samples.oop.classes;
 
 class StaticMembersSample {
 	

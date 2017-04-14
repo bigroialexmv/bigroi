@@ -1,4 +1,4 @@
-package com.bigroi.samples.arrays;
+package com.bigroi.samples.arrays.sorting;
 
 public class ArrayUtil {
 	
@@ -11,7 +11,7 @@ public class ArrayUtil {
 	public static int[] createRandomArray(int length) {
 		int[] a = new int[length];
 		for(int i=0; i< length; i++) {
-			a[i] = (int) (Math.random() * 100 );
+			a[i] = (int) (Math.random() * 1000);
 		}
 		return a;
 	}
@@ -36,8 +36,52 @@ public class ArrayUtil {
 	 * @return случайное целое число от 1 до 101
 	 */
 	public static int randomInt() {
-		return Math.abs( (int) (Math.random()*100) ) + 1;
+		return Math.abs( (int) (Math.random()*1000) ) + 1;
 	}
+	
+	/**
+	 * Переставляет элементы с индексами i и j местами в массиве a 
+	 * @param a массив целых чисел
+	 * @param i	индекс
+	 * @param j индекс
+	 */
+	public static void swap(int[] a, int i, int j) {
+		int x = a[i];
+		a[i] = a[j];
+		a[j] = x;
+	}
+	
+	public static int[] copyArray(int[] a) {
+		int[] copy = new int[a.length];
+		for(int i=0; i<a.length; i++) {
+			copy[i] = a[i];
+		}
+		return copy;
+	}
+	
+	public static int isSorted(int[] a) {
+		int sortedUp = 1;
+		int sortedDown = -1;
+		for (int i = 1; i < a.length; i++) {
+			if ( !(a[i-1] <= a[i]) ) {
+				sortedUp = 0;
+			}
+			if ( !(a[i-1] >= a[i]) ) {
+				sortedDown = 0;
+			}			
+		}
+		if (sortedUp == 1) {
+			return 1;
+		}
+		if (sortedDown == -1) {
+			return -1;
+		}
+		return 0;
+	}
+	
+//	public static int[] copyArray(int[] a) {
+//		return copyArray(a);
+//	}
 	
 	/**
 	 * Находит индекс элемента x отсортированного по возрастанию массива a методом деления пополам
@@ -71,17 +115,24 @@ public class ArrayUtil {
 	}
 	
 	public static void print(int[] a) {
-		for(int i = 0; i < a.length; i ++) { // i++   <=>   i = i + 1
+		System.out.print("{");
+		for(int i = 0; i < a.length - 1; i ++) { // i++   <=>   i = i + 1
 			System.out.print( a[i] );
-			System.out.print( " " );
+			System.out.print( ", " );
 		}
+		System.out.print( a[a.length - 1] );
+		System.out.print("}");
+	}
+	
+	public static void println(int[] a) {
+		print(a);
 		System.out.println();
 	}
 	
 	public static void main(String[] args) {
 		
-		int[] a = ArrayUtil.createRandomSotrtedArray(20);
-		print(a);
+		int[] a = ArrayUtil.createRandomSotrtedArray(200);
+		println(a);
 		int x = a[15];
 		
 		System.out.println("searching for " + x);
