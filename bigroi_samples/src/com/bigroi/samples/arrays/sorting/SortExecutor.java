@@ -30,12 +30,12 @@ public class SortExecutor implements Executable {
 		sortedArray = a;
 	}
 	
-	public void executeWithReport() {
+	public void executeAndReport() {
 		execute();
 		printReport(true);
 	}
 	
-	public void executeWithReport(boolean printArrays) {
+	public void executeAndReport(boolean printArrays) {
 		execute();
 		printReport(printArrays);
 	}

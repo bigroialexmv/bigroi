@@ -26,7 +26,7 @@ public class ArraySortApplication {
 		PerformanceMeasurer measurer = new PerformanceMeasurer(100000);
 		for(ArraySorter arraySorter : arraySorters) {
 			SortExecutor sortExecutor = new SortExecutor( arraySorter, a );
-			sortExecutor.executeWithReport();
+			sortExecutor.executeAndReport();
 			measurer.measureWithReport(sortExecutor);
 		}
 		
