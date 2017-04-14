@@ -27,8 +27,8 @@ public class PerformanceMeasurer {
 		System.out.println();
 		System.out.println( "Измеряется " + executable );
 		long millisPassed = this.measure(executable);
-		System.out.println( "Время выполнения:          " + millisPassed + " (мсек.)" );
-		System.out.println( "Количество выполнений:     " + getExecutionsCount() );
+		System.out.println( "Суммарное время исполнений: " + millisPassed + " (мсек.)" );
+		System.out.println( "Количество исполнений:      " + getExecutionsCount() );
 		return millisPassed;
 	}
 	
