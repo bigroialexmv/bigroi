@@ -23,7 +23,7 @@ public class QuckSortArraySorter extends AbstractArraySorter {
 		}
 		int i = lo - 1;
 		int j = hi + 1;
-		int pi = (i + j) >>> 1;
+		int pi = (i + j) / 2;
 		int p = a[pi];
 			
 		while (i < j) {
@@ -34,10 +34,7 @@ public class QuckSortArraySorter extends AbstractArraySorter {
 				j --;
 			} while ( a[j] > p );
 			if (i < j) {
-				// swap(a, i, j);
-				int x = a[i];
-				a[i] = a[j];
-				a[j] = x;
+				swap(a, i, j);				
 			}
 		}
 		sort(a, lo, j);

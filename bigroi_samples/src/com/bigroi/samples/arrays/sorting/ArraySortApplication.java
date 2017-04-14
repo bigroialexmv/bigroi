@@ -21,7 +21,7 @@ public class ArraySortApplication {
 		arraySorters.add( new StandardSorter() );
 		arraySorters.add( new BubbleArraySorter() );
 		arraySorters.add( new QuckSortArraySorter() );
-		arraySorters.add( new MixedArraySorter() );
+		arraySorters.add( new MixedSortArraySorter() );
 		
 		PerformanceMeasurer measurer = new PerformanceMeasurer(100000);
 		for(ArraySorter arraySorter : arraySorters) {

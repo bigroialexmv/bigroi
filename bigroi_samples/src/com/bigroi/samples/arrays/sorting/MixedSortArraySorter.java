@@ -7,11 +7,11 @@ package com.bigroi.samples.arrays.sorting;
  * @author Alexander Medvedev
  *
  */
-public class MixedArraySorter extends AbstractArraySorter {
+public class MixedSortArraySorter extends AbstractArraySorter {
 	
 	BubbleArraySorter bubbleArraySorter = new BubbleArraySorter();
 	
-	public MixedArraySorter() {
+	public MixedSortArraySorter() {
 		super("Смешанная сортировка");
 	}
 	

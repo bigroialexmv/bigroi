@@ -12,11 +12,6 @@ import java.util.Arrays;
 public class StandardSorter implements ArraySorter {
 	
 	@Override
-	public String getDescription() {		
-		return "Сортировка Arrays.sort()";
-	}
-	
-	@Override
 	public void sort(int[] a) {
 		Arrays.sort(a);		
 	}
@@ -24,6 +19,11 @@ public class StandardSorter implements ArraySorter {
 	@Override
 	public void sort(int[] a, int lo, int hi) {
 		Arrays.sort(a, lo, hi);
+	}
+	
+	@Override
+	public String getDescription() {		
+		return "Сортировка Java API Arrays.sort()";
 	}
 
 }
