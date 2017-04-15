@@ -23,6 +23,22 @@ public class Main {
         char[] charArr1 = "Good evening my pretty friend!".toCharArray();
         char[] charArr2 = "Good evening my pretty friend".toCharArray();
         System.out.println(StringUtil.searchSubstring(charArr1,charArr2));
-
+        
+        
+        
+        TimeMesaure timer = new TimeMesaure();
+        for(int i=0;i<1000000;i++)
+        {
+        	
+        }
+        System.out.println(timer.getPasseMillis());
+        
+        System.out.println("-------------------------------------");
+        
+        int arr[] = RandomArray.getRandomArray(10);
+        
+        
+        for(int i=0;i<arr.length;i++)
+        	System.out.println(arr[i]);
     }
 }
