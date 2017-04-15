@@ -1,4 +1,4 @@
-package com.bigroi.homework.lesson03;
+package com.bigroi.classwork.lesson04.s1;
 
 public class ArraySearcherApp {
 	
