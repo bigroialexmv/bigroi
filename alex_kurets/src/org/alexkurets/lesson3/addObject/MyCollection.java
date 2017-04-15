@@ -25,7 +25,7 @@ public class MyCollection implements Iterable<Integer> {
 
 		@Override
 		public boolean hasNext() {
-			
+			return true;
 		}
 
 		@Override
