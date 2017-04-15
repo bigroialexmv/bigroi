@@ -15,18 +15,18 @@ import com.bigroi.samples.execution.PerformanceMeasurer;
 public class ArraySortApplication {
 
 	public static void main(String[] args) {
-		int[] a = ArrayUtil.createRandomArray(50);
+		int[] a = ArrayUtil.createRandomArray(1000000);
 		
 		List<ArraySorter> arraySorters = new ArrayList<ArraySorter>();
 		arraySorters.add( new StandardSorter() );
-		arraySorters.add( new BubbleArraySorter() );
+//		arraySorters.add( new BubbleArraySorter() );
 		arraySorters.add( new QuckSortArraySorter() );
 		arraySorters.add( new MixedSortArraySorter() );
 		
-		PerformanceMeasurer measurer = new PerformanceMeasurer(100000);
+		PerformanceMeasurer measurer = new PerformanceMeasurer(100);
 		for(ArraySorter arraySorter : arraySorters) {
 			SortExecutor sortExecutor = new SortExecutor( arraySorter, a );
-			sortExecutor.executeAndReport();
+			sortExecutor.executeAndReport(false);
 			measurer.measureWithReport(sortExecutor);
 		}
 		

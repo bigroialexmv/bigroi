@@ -11,7 +11,7 @@ public class ArrayUtil {
 	public static int[] createRandomArray(int length) {
 		int[] a = new int[length];
 		for(int i=0; i< length; i++) {
-			a[i] = (int) (Math.random() * 1000);
+			a[i] = (int) (Math.random() * 100000);
 		}
 		return a;
 	}
