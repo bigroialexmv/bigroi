@@ -1,6 +1,5 @@
 package org.alexkurets.homework3;
 
-import java.util.Arrays;
 
 public class StringUtil {
     public static int searchSubstring(char[] str, char[]substr)
