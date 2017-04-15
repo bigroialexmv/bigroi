@@ -15,7 +15,7 @@ import com.bigroi.samples.execution.PerformanceMeasurer;
 public class ArraySortApplication {
 
 	public static void main(String[] args) {
-		int[] a = ArrayUtil.createRandomArray(1000);
+		int[] a = ArrayUtil.createRandomArray(50);
 		
 		List<ArraySorter> arraySorters = new ArrayList<ArraySorter>();
 		arraySorters.add( new StandardSorter() );
