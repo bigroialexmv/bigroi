@@ -21,7 +21,7 @@ class FinalSamples {
 	final String finalFieldA = "This is finalFieldA";
 	
 	/**
-	 * Поле finalField объявлено как final без инициализации, должно быть проинициализировано в конструкторе
+	 * Поле finalFieldB объявлено как final без инициализации, должно быть проинициализировано в конструкторе
 	 * (не инициализируется null или 0 по умолчанию)
 	 */
 	final String finalFieldB;
