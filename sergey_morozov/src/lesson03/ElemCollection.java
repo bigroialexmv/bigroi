@@ -21,6 +21,7 @@ public class ElemCollection implements Iterable<Integer> {
 	class ElemIterator implements Iterator<Integer>{
 
 		ElemCollection col;
+		private int nextIndex;
 		
 		public ElemIterator(ElemCollection col) {
 			
@@ -29,16 +30,17 @@ public class ElemCollection implements Iterable<Integer> {
 
 		@Override
 		public boolean hasNext() {
-			if (i < col.nextIndex) {
-				
+			if (this.nextIndex < col.nextIndex) {
+				return true;
 			}
 			return false;
 		}
 
 		@Override
 		public Integer next() {
+			nextIndex++;
+			return col.nextIndex;
 			
-			return null;
 		}
 		
 	}
@@ -48,8 +50,10 @@ public class ElemCollection implements Iterable<Integer> {
 		col.add(10);
 		col.add(40);
 		col.add(30);
-		for (Integer i : col) {
-			
-		}
+		//for (Integer i : col) {
+		//	if (i.hasNext()){
+			//	System.out.println(i.next());
+			//}
+		//}
 	}
 }
