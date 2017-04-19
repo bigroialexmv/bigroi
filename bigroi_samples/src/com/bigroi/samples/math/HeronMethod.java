@@ -7,7 +7,7 @@ public class HeronMethod {
 //	 * aprxm - approximation / приближение
 	 * 
 	 */
-	public static double calc(double x, double aprxm, int n) {
+	public static double sqrt(double x, double aprxm, int n) {
 		double nx = 0; 
 		int i = n;
 		while (i > 0) {
@@ -21,7 +21,7 @@ public class HeronMethod {
 	
 	public static void main(String[] args) {
 		double x = 5;
-		double r = HeronMethod.calc(x, x, 9);
+		double r = HeronMethod.sqrt(x, x, 9);
 		System.out.println("---------------");
 		System.out.println("heron result = " + r);
 		System.out.println("---------------");

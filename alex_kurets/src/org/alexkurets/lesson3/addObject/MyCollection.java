@@ -2,12 +2,38 @@ package org.alexkurets.lesson3.addObject;
 
 import java.util.Iterator;
 
-public class MyCollection<T> implements Iterable<T> {
 
+
+public class MyCollection implements Iterable<Integer> {
+
+	private Integer [] store;
+	
+	public MyCollection(int a)
+	{
+		//store=new Integer[a];
+	}
+	
 	@Override
-	public Iterator<T> iterator() {
+	public Iterator<Integer> iterator() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MyCollectionIterator();
+	}
+	
+	
+	private class MyCollectionIterator implements Iterator<Integer>
+	{
+
+		@Override
+		public boolean hasNext() {
+			return true;
+		}
+
+		@Override
+		public Integer next() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	}
 
 }
