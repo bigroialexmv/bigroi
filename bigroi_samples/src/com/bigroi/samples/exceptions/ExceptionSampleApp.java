@@ -27,19 +27,19 @@ import java.util.Scanner;
  											которые должны быть проверены (обработаны) при вызове метода
 */
 
-class SumCalculationException extends Exception {	// SampleException - checked, проверяемое исключение
+class CalculationException extends Exception {	// SampleException - checked, проверяемое исключение
 
 	private static final long serialVersionUID = -5435178406915377752L;
 	
-	public SumCalculationException() {
+	public CalculationException() {
 		super();				// Вызывает конструктор по умолчанию класса Exception
 	}
 	
-	public SumCalculationException(String message) {
+	public CalculationException(String message) {
 		super(message); 		// Вызывает конструктор класса Exception: public Exception(String message)
 	}
 	
-	public SumCalculationException(String message, Throwable cause) {
+	public CalculationException(String message, Throwable cause) {
 		super(message, cause); 	// Вызывает конструктор класса Exception: public Exception(String message, Throwable cause)
 	}
 	
@@ -53,47 +53,51 @@ class SampleRuntimeException extends RuntimeException {
 
 public class ExceptionSampleApp {
 	
-	public static String SUM_ERR_FORMAT = "%s слагаемое %s не является числом";
+	public static String SUM_ERR_FORMAT = "%s операнд %s не является числом";
 	
-	public static int calcSum(String a, String b) throws SumCalculationException {
-		int intA = 0;
-		int intB = 0;
+	public static int calcExpression(String expression) throws CalculationException {
+		String[] tokens = expression.split(" ");
+		int op1 = 0;
+		int op2 = 0;
 		
 		try {
-			intA = Integer.parseInt(a);
+			op1 = Integer.parseInt( tokens[0] );
 		} catch (NumberFormatException e) { // NumberFormatException является unchecked (наследуется от RuntimeException) - catch не обязателен
-			String message = String.format(SUM_ERR_FORMAT, "1-ое", a);
-			throw new SumCalculationException( message , e);
+			String message = String.format(SUM_ERR_FORMAT, "1-ый", tokens[0] );
+			throw new CalculationException( message , e);
 		}
 		
 		try {
-			intB = Integer.parseInt(b);
+			op2 = Integer.parseInt( tokens[2] );
 		} catch (NumberFormatException e) {
-			String message = String.format(SUM_ERR_FORMAT, "2-ое", b);
-			throw new SumCalculationException( message , e);
-		} finally {
-			System.out.println("  { Выполнился finally блок } ");
+			String message = String.format(SUM_ERR_FORMAT, "2-ой", tokens[2] );
+			throw new CalculationException( message , e);
 		}
 		
-		return (intA + intB);
+		String operator = tokens[1];
+		switch (operator) {
+			case "+": 
+				return (op1 + op2);
+			case "-":
+				return (op1 - op2);
+			case "*":
+				return (op1 * op2);
+			case "/":
+				return (op1 / op2);
+		}
+		throw new CalculationException("Неизвестный опратор: " + operator);
 	}
 	
 	public static void main(String[] args) {
 		final Scanner scanner = new Scanner(System.in);		// Используем класс Scanner для удобства 
 		
-		System.out.println("Введите 1-ое слагаемое:");
-		String a = scanner.next();
-		
-		System.out.println("Введите 2-ое слагаемое:");
-		String b = scanner.next();
-		
-		System.out.println("Введите делитель:");
-		String c = scanner.next();
-		
+		System.out.println("Введите выражение (пример: 3 + 6 ):");
+		String input = scanner.nextLine();
+			
 		try {
-			int result = calcSum (a, b) / Integer.parseInt(c);
-			System.out.println("a + b = " + result);
-		} catch (SumCalculationException e) {	// CalculationException является checked (наследуется от Exception) - catch обязателен
+			int result = calcExpression (input);
+			System.out.println(input +  " = " + result);
+		} catch (CalculationException e) {	// CalculationException является checked (наследуется от Exception) - catch обязателен
 			System.out.println("Произошла ошибка: " + e.getMessage());
 		} catch (ArithmeticException e) {   // ArithmeticException является unchecked - catch не обязателен
 			System.out.println("Произошла арифметическая ошибка: " + e.getMessage());
@@ -102,7 +106,9 @@ public class ExceptionSampleApp {
 			e.printStackTrace();
 		} finally {
 			scanner.close();
+			System.out.println("Сканнер закрыт");
 		}
+		System.out.println("Программа завершена");
 		
 	}
 }
