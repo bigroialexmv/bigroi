@@ -1,6 +1,8 @@
 package com.bigroi.classwork.lesson05.shop;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ProductServiceMockImpl implements ProductService  {
@@ -15,6 +17,10 @@ public class ProductServiceMockImpl implements ProductService  {
 	@Override
 	public void saveProduct(Product product) throws Exception {
 		codeProductMap.put( product.getCode(), product );	
+	}
+	
+	public Collection<Product> findAllProducts() throws Exception {
+		return codeProductMap.values();
 	}
 
 	
