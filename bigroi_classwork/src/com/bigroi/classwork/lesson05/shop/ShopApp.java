@@ -1,5 +1,6 @@
 package com.bigroi.classwork.lesson05.shop;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
@@ -12,13 +13,16 @@ public class ShopApp {
 		
 		ProductService productService = new ProductServiceMockImpl();		
 
-		InputStreamReader reader = new FileReader("D:\\products_1.fdb");		
-		readInput(productService, new Scanner( reader ));
+		File file = new File("C:\\WORKSPACE\\products_1.fdb");
+		if ( file.exists() ) {	// если файл существует
+			InputStreamReader reader = new FileReader( file );
+			readInput( productService, new Scanner(reader) );
+		}
 		
 		System.out.println();
 		readInput(productService, new Scanner( System.in ));
 		
-		FileWriter writer = new FileWriter("D:\\products_1.fdb");
+		FileWriter writer = new FileWriter("C:\\WORKSPACE\\products_1.fdb");
 		Collection<Product> products = productService.findAllProducts();
 		for(Product p : products) {
 			writer.write("addp");
@@ -28,7 +32,7 @@ public class ShopApp {
 			writer.write(p.getName());
 			writer.write("\n");
 			writer.write( p.getPrice().toString() );
-			writer.write("\n");			
+			writer.write("\n");
 		}
 		writer.write("quit");
 		writer.write("\n");
@@ -61,7 +65,7 @@ public class ShopApp {
 				Product p = productService.findProductByCode(code);
 				System.out.println( p );
 			} else {
-				System.out.println("Invalid command");
+				System.out.println("Invalid command. Commands available: addp, showp or quit");
 			}
 		}
 		scanner.close();
