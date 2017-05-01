@@ -6,8 +6,6 @@ package com.bigroi.samples.io;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Alexander Medvedev
@@ -16,10 +14,6 @@ import java.util.logging.Logger;
 public class FileSampleApp {
 	
 	public static void main(String[] args) {
-		Logger log = Logger.getLogger("FileSampleApp");
-		
-		log.log(Level.INFO, "Program started");
-		
 		// создаем объект файл, который будет ссылаться на директорию d:\temp\testdir
 		File dir = new File("d:\\temp1\\testdir");
 		System.out.println( dir.getName() + " exists: " + dir.exists() );			// существует ли файл или директория с путем d:\temp\testdir 
