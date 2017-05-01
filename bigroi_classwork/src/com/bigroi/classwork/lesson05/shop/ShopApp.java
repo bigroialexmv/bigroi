@@ -14,7 +14,7 @@ public class ShopApp {
 		ProductService productService = new ProductServiceMockImpl();		
 
 		// создаем объект file, в конструкторе указываем путь к файлу, с которым хотим работать
-		File file = new File("C:\\WORKSPACE\\products_1.fdb"); /* (1) */
+		File file = new File("D:\\products.txt"); /* (1) */
 		boolean fileExists = file.exists(); 
 		if ( fileExists ) {	// если файл существует
 			// создаем объект reader, который умеет читать данные из файла
@@ -40,7 +40,7 @@ public class ShopApp {
 		// Сохраняем в файл построчно поля объектов класса Product, а также комманды, которые затем будут использоваться
 		// при новом запуске приложения в (1) (чтобы использовать один и тот же метод - readInput - как для консольного ввода, 
 		// так и для чтения комманд из файла)
-		FileWriter writer = new FileWriter("C:\\WORKSPACE\\products_1.fdb");
+		FileWriter writer = new FileWriter("D:\\products.txt");
 		Collection<Product> products = productService.findAllProducts();
 		for(Product p : products) {
 			writer.write("addp");
@@ -75,8 +75,14 @@ public class ShopApp {
 			if ( "quit".equals( userCommand ) ) {
 				break;
 			} else if ("addp".equals( userCommand )) {
-				System.out.print("Enter product code: ");
-				String code = scanner.nextLine();
+				String code = null;
+				while (code == null) {
+					try {
+						code = readCode(scanner);
+					} catch(Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
 				
 				System.out.print("Enter product name: ");
 				String name = scanner.nextLine();
@@ -96,5 +102,15 @@ public class ShopApp {
 			}
 		}
 		scanner.close();
+	}
+
+	private static String readCode(Scanner scanner) throws Exception {
+		String code;
+		System.out.print("Enter product code: ");
+		code = scanner.nextLine();
+		if (code.length() > 3) {
+			throw new Exception("Invalid code. ");
+		}
+		return code;
 	}
 }
