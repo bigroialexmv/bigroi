@@ -44,16 +44,16 @@ public class ShopApp {
 		Collection<Product> products = productService.findAllProducts();
 		for(Product p : products) {
 			writer.write("addp");
-			writer.write("\n\r");
+			writer.write("\n");
 			writer.write(p.getCode());
-			writer.write("\n\r");
+			writer.write("\n");
 			writer.write(p.getName());
-			writer.write("\n\r");
+			writer.write("\n");
 			writer.write( p.getPrice().toString() );
-			writer.write("\n\r");
+			writer.write("\n");
 		}
 		writer.write("quit");
-		writer.write("\n\r");
+		writer.write("\n");
 		writer.close();
 		// 
 		
@@ -75,8 +75,14 @@ public class ShopApp {
 			if ( "quit".equals( userCommand ) ) {
 				break;
 			} else if ("addp".equals( userCommand )) {
-				System.out.print("Enter product code: ");
-				String code = scanner.nextLine();
+				String code = null;
+				while (code == null) {
+					try {
+						code = readCode(scanner);
+					} catch(Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
 				
 				System.out.print("Enter product name: ");
 				String name = scanner.nextLine();
@@ -96,5 +102,15 @@ public class ShopApp {
 			}
 		}
 		scanner.close();
+	}
+
+	private static String readCode(Scanner scanner) throws Exception {
+		String code;
+		System.out.print("Enter product code: ");
+		code = scanner.nextLine();
+		if (code.length() > 3) {
+			throw new Exception("Invalid code. ");
+		}
+		return code;
 	}
 }
