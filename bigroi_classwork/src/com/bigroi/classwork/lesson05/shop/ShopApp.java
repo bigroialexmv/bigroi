@@ -14,7 +14,7 @@ public class ShopApp {
 		ProductService productService = new ProductServiceMockImpl();		
 
 		// создаем объект file, в конструкторе указываем путь к файлу, с которым хотим работать
-		File file = new File("C:\\WORKSPACE\\products_1.fdb"); /* (1) */
+		File file = new File("D:\\products.txt"); /* (1) */
 		boolean fileExists = file.exists(); 
 		if ( fileExists ) {	// если файл существует
 			// создаем объект reader, который умеет читать данные из файла
@@ -40,20 +40,20 @@ public class ShopApp {
 		// Сохраняем в файл построчно поля объектов класса Product, а также комманды, которые затем будут использоваться
 		// при новом запуске приложения в (1) (чтобы использовать один и тот же метод - readInput - как для консольного ввода, 
 		// так и для чтения комманд из файла)
-		FileWriter writer = new FileWriter("C:\\WORKSPACE\\products_1.fdb");
+		FileWriter writer = new FileWriter("D:\\products.txt");
 		Collection<Product> products = productService.findAllProducts();
 		for(Product p : products) {
 			writer.write("addp");
-			writer.write("\n");
+			writer.write("\n\r");
 			writer.write(p.getCode());
-			writer.write("\n");
+			writer.write("\n\r");
 			writer.write(p.getName());
-			writer.write("\n");
+			writer.write("\n\r");
 			writer.write( p.getPrice().toString() );
-			writer.write("\n");
+			writer.write("\n\r");
 		}
 		writer.write("quit");
-		writer.write("\n");
+		writer.write("\n\r");
 		writer.close();
 		// 
 		
