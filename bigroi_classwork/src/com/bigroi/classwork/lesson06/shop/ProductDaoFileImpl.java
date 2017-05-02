@@ -52,7 +52,7 @@ public class ProductDaoFileImpl implements Closeable {
 				0 /* индекс массива codeBuffer, начиная с которого берем байты из codeBuffer */, 
 				buffer, 
 				0 /* индекс массива buffer, начиная с которого пишем байты в buffer */, 
-				codeBuffer.length /* количество копируемых байтов из buffer - весь массив в нашем случае*/
+				codeBuffer.length /* количество копируемых байтов из codeBuffer - весь массив в нашем случае*/
 				);
 		
 		// записываем name в buffer
