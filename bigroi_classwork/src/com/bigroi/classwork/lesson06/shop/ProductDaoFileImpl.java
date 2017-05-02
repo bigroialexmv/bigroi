@@ -26,33 +26,33 @@ public class ProductDaoFileImpl implements Closeable {
 
 	/**
 	 * Сохраняет объект Product в файл путем создания записи в файле длиной 140 байт. Запись состоит из 3-х частей (полей):
-	 *   - поле code длиной 8 байт 
-	 *   - поле name длиной 100 байт
-	 *   - поле price длиной 32 байт
+	 *   - поле code - имеет длину 8 байт 
+	 *   - поле name - имеет длину 100 байт
+	 *   - поле price - имеет длину 32 байта
 	 * @param product
 	 * @throws DaoException
 	 */	
 	public void insertProduct(Product product) throws DaoException {
-		// массив-буфер - заполняем его данными из объекта
-		// code записываем в buffer начиная с индекса 0 и заканчивая индексом 7: [0,7]
-		// name будет храниться в диапазоне индексов 8 и 107 (включая): [108, 140] 
+		// buffer - массив-буфер - заполняем его данными из объекта
+		// code будет храниться в buffer начиная с индекса 0 и заканчивая индексом 7: [0,7]
+		// name будет храниться в диапазоне индексов 8 и 107 (включая): [8, 107] 
 		// price будет храниться в диапазоне [108, 140]
 		byte[] buffer = new byte[140];
 		
 		// преобразуем символы поля code в массив байтов
 		String code = product.getCode();
 		byte[] codeBuffer = code.getBytes();
-		// проверяем длину массива; если превосходит 8, то выбрсываем исключение
+		// проверяем длину массива; если превосходит 8, то выбрасываем исключение
 		if (codeBuffer.length > 8) {
 			throw new DaoException("Could not write to file");
 		}
 		// копируем все байты из массива codeBuffer в массив buffer		
 		System.arraycopy(
 				codeBuffer, 
-				0 /* индекс из codeBuffer, начиная с которого берем байты */, 
+				0 /* индекс массива codeBuffer, начиная с которого берем байты из codeBuffer */, 
 				buffer, 
-				0 /* индекс из buffer, начиная с которого пишем байты */, 
-				codeBuffer.length /* количество копируемых байтов из buffer */
+				0 /* индекс массива buffer, начиная с которого пишем байты в buffer */, 
+				codeBuffer.length /* количество копируемых байтов из buffer - весь массив в нашем случае*/
 				);
 		
 		// записываем name в buffer
@@ -83,7 +83,7 @@ public class ProductDaoFileImpl implements Closeable {
 	}
 	
 	/**
-	 * Читает запись из файла с номером n; прочитанные поля помещает в новый объект product
+	 * Читает из файла запись с номером n; прочитанные поля помещает в новый объект product
 	 * @param n
 	 * @return - product
 	 * @throws DaoException

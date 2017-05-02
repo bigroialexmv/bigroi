@@ -20,21 +20,42 @@ public class FileLister {
 		list(file, 1);
 	}
 	
+	/**
+	 * 
+	 * @param file
+	 * @param level - уровень вложенности папки либо файла
+	 */
 	protected void list(File file, int level) {
-		long fileLength = countLength(file);
+		long fileLength = countLength(file);	// вычисляем размер файла или директории
+		
 		if ( file.isDirectory() ) {
-			out.printf("%" + (level) + "s %-41s  dir %s bytes (~%s KB, ~%s MB)\n", " ", file.getName(), fileLength, fileLength / 1024, fileLength / 1024 / 1024);
-			File[] files = file.listFiles();
-			if (files != null) {				
-				for(File f : files) {
-					list(f, level + 1);					
-				}
-			}			
+			out.printf("%" + (level*2) + "s %-40s  dir %s bytes (~%s KB, ~%s MB)\n", " ", 
+					file.getName(), fileLength, fileLength / 1024, fileLength / 1024 / 1024);
+			
+			// сначала показываем поддиректории
+			File[] files = file.listFiles( (f) -> f.isDirectory() );
+			listFiles(files, level + 1);
+			
+			// потом потом показываем файлы
+			files = file.listFiles( (f) -> f.isFile() );
+			listFiles(files, level + 1);
 		} else {
-			out.printf("%" + (level+2) + "s %-40s  file %s\n", " ", file.getName(), countLength(file));
-		}		
+			out.printf("%" + (level*2-1) + "s|- %-40s  file %s\n", " ", file.getName(), countLength(file));
+		}
 	}
-	
+
+	private void listFiles(File[] files, int level) {
+		if (files != null) {
+			for(File f : files) {
+				list(f, level + 1);
+			}
+		}
+	}
+	/**
+	 * Вычисляет размер папки или файла
+	 * @param file
+	 * @return
+	 */
 	protected long countLength(File file) {
 		if ( file.isFile() ) {
 			return file.length();					
