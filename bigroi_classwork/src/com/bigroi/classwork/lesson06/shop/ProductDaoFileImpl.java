@@ -46,8 +46,14 @@ public class ProductDaoFileImpl implements Closeable {
 		if (codeBuffer.length > 8) {
 			throw new DaoException("Could not write to file");
 		}
-		// копируем все байты из codeBuffer 
-		System.arraycopy(codeBuffer, 0, buffer, 0, codeBuffer.length);
+		// копируем все байты из массива codeBuffer в массив buffer		
+		System.arraycopy(
+				codeBuffer, 
+				0 /* индекс из codeBuffer, начиная с которого берем байты */, 
+				buffer, 
+				0 /* индекс из buffer, начиная с которого пишем байты */, 
+				codeBuffer.length /* количество копируемых байтов из buffer */
+				);
 		
 		// записываем name в buffer
 		String name = product.getName();
