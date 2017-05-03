@@ -7,13 +7,13 @@ public class BubbleArraySorter implements IArraySorter{
     @Override
     public void sort(int[] arr, boolean order) {
         int flag =0;
-
+        //
         for(int i=0;i<(arr.length-1);i++)
         {
             flag=0;
             for(int j=0;j<(arr.length-1-i);j++)
             {
-                if(order==true)
+                if(order)
                 {
                     if (arr[j] > arr[j + 1]) {
                         int temp = arr[j];

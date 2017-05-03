@@ -16,9 +16,9 @@ public class Main {
 
         //System.out.println("obj1.getCountOfLoop() = " + obj1.getCountOfLoop());
 
+        //gggggg
         int [] arr2 = {1,2,3,3,3,4,5,6,100,200,100};
         System.out.println("searching index: "+ ArrayUtil.BinarySearch(arr2,100));
-
 
         char[] charArr1 = "Good evening my pretty friend!".toCharArray();
         char[] charArr2 = "Good evening my pretty friend".toCharArray();
