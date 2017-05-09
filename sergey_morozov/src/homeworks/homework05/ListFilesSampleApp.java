@@ -19,12 +19,12 @@ public class ListFilesSampleApp {
         try (FileWriter dataFile = new FileWriter("E:\\data.txt");
         		FileReader reader = new FileReader ("E:\\data.txt")) {
 		ListFilesSample lf = new ListFilesSample(file, dataFile);
-       
+		System.out.println("Strings in file are: " + lf.getCountString());
        
 		
 		System.out.println("******************************");
 		System.out.println();
-		lf.printFileExt(file, ".jpg");
+		lf.printFileExt(file, ".zip");
 		
 		System.out.println("******************************");
 		System.out.println();
@@ -37,8 +37,10 @@ public class ListFilesSampleApp {
 		    s.append(c);
 		   
 		}
+		
+		
 		String str = s.toString();
-		String [] words = str.split(" ");
+		String [] words = str.split("");
 		System.out.println("Words in file: " + words.length);
         } catch (IOException e) {
         	e.printStackTrace();

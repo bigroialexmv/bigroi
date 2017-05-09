@@ -9,6 +9,8 @@ import java.io.RandomAccessFile;
 
 public class ListFilesSample {
 
+	int countString = 0;
+	
 	public ListFilesSample (File f, FileWriter dataFile) {
 	
 			printListDirectories(f, dataFile);
@@ -18,8 +20,11 @@ public class ListFilesSample {
 	
 	public void writeDataInFile (FileWriter dataFile, String s) {
 	     
-			try {
+			
+		try {
 				dataFile.append(s);
+				dataFile.append('\n');
+				countString++;
 			} catch (IOException e) {
 				
 				e.printStackTrace();
@@ -88,5 +93,13 @@ public class ListFilesSample {
 			System.out.println(fn);
 				else printFileExt (fn, ext);
 		}	
+	}
+
+	public int getCountString() {
+		return countString;
+	}
+
+	public void setCountString(int countString) {
+		this.countString = countString;
 	}
 }
