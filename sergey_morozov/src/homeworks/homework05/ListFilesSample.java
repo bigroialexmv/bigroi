@@ -1,15 +1,15 @@
 package homeworks.homework05;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 public class ListFilesSample {
 
 	int countString = 0;
+	private int countDirectories = 0;
+	private int countFiles = 0;
 	
 	public ListFilesSample (File f, FileWriter dataFile) {
 	
@@ -18,10 +18,9 @@ public class ListFilesSample {
 		
 		}
 	
+	
 	public void writeDataInFile (FileWriter dataFile, String s) {
-	     
-			
-		try {
+	     try {
 				dataFile.append(s);
 				dataFile.append('\n');
 				countString++;
@@ -29,39 +28,34 @@ public class ListFilesSample {
 				
 				e.printStackTrace();
 			}
-		
 	}
 	
-		
-	
-	
+			
 	public void printListFiles (File dir, FileWriter fileWriter) {
 			
 		File[] files = dir.listFiles( (f) -> f.isFile() );
 		
 		for(File f : files) {
+			countFiles++;
 			String s = f.getAbsolutePath() + " Size: " + f.length() + " ";
 			System.out.println(s);
 			writeDataInFile (fileWriter, s);
 			
 	}
 }
-	
 	public void printListDirectories (File dir, FileWriter dataFile) {
 		
 		File[] files = dir.listFiles( (f1) -> f1.isDirectory());
 		
 		for(File fn : files) {
-			
+			countDirectories ++;
 			printListDirectories(fn, dataFile);
 				
 			printListFiles (fn, dataFile);
 			String s = fn.getAbsolutePath() + " Summary size: " + getSizeDirectory(fn) + " ";
 			System.out.println(s);
 			writeDataInFile (dataFile, s);
-			
-		
-}
+			}
 	
 }
 	
@@ -101,5 +95,21 @@ public class ListFilesSample {
 
 	public void setCountString(int countString) {
 		this.countString = countString;
+	}
+	
+	public int getCountDirectories() {
+		return countDirectories;
+	}
+
+	public void setCountDirectories(int countDirectories) {
+		this.countDirectories = countDirectories;
+	}
+
+	public int getCountFiles() {
+		return countFiles;
+	}
+
+	public void setCountFiles(int countFiles) {
+		this.countFiles = countFiles;
 	}
 }
