@@ -1,22 +1,18 @@
 package com.bigroi.classwork.lesson07;
 
-public class RunnableSampleApp {
-	
+public class AtomicSampleApp {
+
 	public static void main(String[] args) {
-		
 		Thread currentThread = Thread.currentThread();
 		String curThreadName = currentThread.getName();
 		System.out.printf("%s started\n", curThreadName);
 		
-		Counter counter = new Counter();
+		AtomicCounter counter = new AtomicCounter();
 		
 		Thread counterThread0 = new Thread(counter);
-		counterThread0.setPriority(Thread.MIN_PRIORITY);
 		counterThread0.start();
 		
-		counterThread0.setPriority(10);
-		Thread counterThread1 = new Thread(counter);	
-		counterThread1.setPriority(Thread.MAX_PRIORITY);
+		Thread counterThread1 = new Thread(counter);		
 		counterThread1.start();
 		
 		try {
@@ -38,6 +34,7 @@ public class RunnableSampleApp {
 		System.out.printf("count=%s\n", counter.getCount());
 		
 		System.out.printf("%s ended\n", curThreadName);
-	}		
+		
+	}
 
 }
