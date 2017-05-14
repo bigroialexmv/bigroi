@@ -4,30 +4,39 @@ import java.util.Scanner;
 
 class Worker implements Runnable {
 
-	@Override
-	public void run() {		
-		synchronized (this) {
-			while(true) {			
-				try {
-					this.wait();
-					System.out.println("Piece of work done");
-				} catch (InterruptedException e) {				
-					e.printStackTrace();
-				}
-			}			
-		}
-				
-	}
+	private Object waitNotify;	
 	
+	public Worker(Object waitNotify) {
+		this.waitNotify = waitNotify;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				System.out.println("Waiting for notification");
+				synchronized (waitNotify) {
+					waitNotify.wait();
+					System.out.println("Piece of work done");
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
 
 public class WaitNotifySampleApp {	
 	
 	public static void main(String[] args) {
 		
-		Worker worker = new Worker();
+		Object waitNotify = new Object();
+		
+		Worker worker = new Worker(waitNotify);
 		Thread workerThread = new Thread(worker);
 		workerThread.setDaemon(true);
+		workerThread.start();
 		
 		Scanner s = new Scanner(System.in);
 		while (true) {
@@ -35,10 +44,10 @@ public class WaitNotifySampleApp {
 			if( "q".equals( cmd ) ) {
 				break;
 			} else if( "n".equals( cmd ) ) {
-				synchronized (worker) {
-					worker.notify();
-					System.out.println("notified");
-				}				
+				synchronized (waitNotify) {
+					waitNotify.notify();					
+				}
+				System.out.println("notified");
 			}
 		}
 		System.out.println("main ended");
