@@ -38,8 +38,14 @@ public class WaitNotifySampleApp {
 		workerThread.setDaemon(true);
 		workerThread.start();
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {			
+		}
+		
 		Scanner s = new Scanner(System.in);
-		while (true) {
+		System.out.println("Enter n to notify or q to quit:");
+		while (true) {			
 			String cmd = s.nextLine();
 			if( "q".equals( cmd ) ) {
 				break;
@@ -50,7 +56,7 @@ public class WaitNotifySampleApp {
 				System.out.println("notified");
 			}
 		}
-		System.out.println("main ended");
+		System.out.println("program ended");
 		s.close();
 		
 	}
