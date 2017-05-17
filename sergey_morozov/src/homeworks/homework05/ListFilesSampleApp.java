@@ -27,7 +27,7 @@ public class ListFilesSampleApp {
 		
 		System.out.println("******************************");
 		System.out.println();
-		lf.printFileExt(file, ".zip");
+		lf.printExt(file, "jpg");
 		
 		System.out.println("******************************");
 		System.out.println();
@@ -36,7 +36,7 @@ public class ListFilesSampleApp {
 		String temp;
 		while (reader.readLine() != null) {
 			temp = reader.readLine();
-			System.out.println(temp);
+//			System.out.println(temp);
 		    s.append(temp);
 		   
 		}

@@ -74,6 +74,7 @@ public class UserDaoFileImpl implements Closeable {
 		
 		try {
 			// пишем наш buffer в файл
+			dataFile.seek(dataFile.length());
 			dataFile.write(buffer);
 		} catch (IOException e) {
 			throw new DaoException("Could not write to file", e);

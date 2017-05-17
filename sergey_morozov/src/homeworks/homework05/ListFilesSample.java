@@ -72,22 +72,24 @@ public class ListFilesSample {
 	}
 	
 	
-	public void printFileExt (File file, String ext) {
-		FilenameFilter filter = new FilenameFilter() {			
-			@Override
-			public boolean accept(File file, String name) {
-				//System.out.println("  filtering: " + name);
-				return name.endsWith(ext);
-			}
-		};
+	
+	public void printExt(File file, String ext) {
+		FilenameFilter filter = new OnlyExt(ext);
+		String[] s = file.list(filter);
+		for(int i = 0; i < s.length; i++) {
+			System.out.println(s[i]);
+		}
 		
-		File[] filenames = file.listFiles( filter );
-			for(File fn : filenames) {
-				if (fn.isFile())
-			System.out.println(fn);
-				else printFileExt (fn, ext);
-		}	
+		File[] files = file.listFiles(); 
+		for (File f : files) {
+			if (f.isDirectory()) {
+				
+			printExt (f, ext);
+		}
+		
 	}
+	}
+
 
 	public int getCountString() {
 		return countString;
@@ -113,3 +115,4 @@ public class ListFilesSample {
 		this.countFiles = countFiles;
 	}
 }
+
