@@ -36,7 +36,7 @@ public class FileLister {
 			File[] files = file.listFiles( (f) -> f.isDirectory() );
 			listFiles(files, level + 1);
 			
-			// потом потом показываем файлы
+			// потом показываем файлы
 			files = file.listFiles( (f) -> f.isFile() );
 			listFiles(files, level + 1);
 		} else {
