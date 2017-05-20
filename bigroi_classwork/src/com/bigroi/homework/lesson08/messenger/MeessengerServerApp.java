@@ -20,9 +20,9 @@ class ServerClient implements Runnable {
 			InputStream is = socket.getInputStream();		
 			DataInputStream dis = new DataInputStream(is);
 			while (true) {
-				String message = dis.readUTF();
+				String message = dis.readUTF();				// читаем сообщение от клиента
 				System.out.println("Recieved: " + message);
-				if ("quit".equals(message)) {
+				if ("quit".equals(message)) {				// если клиент отправил quit выходим из цикла
 					break;
 				}
 			}
@@ -38,9 +38,15 @@ public class MeessengerServerApp {
 		System.out.println("Server started");
 		ServerSocket serverSocket = null;
 		try {
-			serverSocket = new ServerSocket(9988);
-			Socket socket = serverSocket.accept();
-			System.out.println( "Client connected: " + socket.getInetAddress() );
+			serverSocket = new ServerSocket(9988);			
+			while(true) {
+				Socket socket = serverSocket.accept();
+				System.out.println( "Client connected: " + socket.getInetAddress() );
+			
+				ServerClient client = new ServerClient(socket);
+				Thread thread = new Thread(client);
+				thread.start();
+			}		
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
