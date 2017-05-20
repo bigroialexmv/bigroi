@@ -1,5 +1,6 @@
 package homeworks.homework05;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,24 +18,26 @@ public class ListFilesSampleApp {
 			System.out.println("Directory " + dir + " contains: ");
 		
         try (FileWriter dataFile = new FileWriter("E:\\data.txt");
-        		FileReader reader = new FileReader ("E:\\data.txt")) {
+        		BufferedReader reader = new BufferedReader (new FileReader("E:\\data.txt"))) {
 		ListFilesSample lf = new ListFilesSample(file, dataFile);
+		System.out.println("*************************");
 		System.out.println("Strings in file are: " + lf.getCountString());
-       
+       System.out.println("Count of directories is: " + lf.getCountDirectories());
+       System.out.println("Conut of files is: " + lf.getCountFiles());
 		
 		System.out.println("******************************");
 		System.out.println();
-		lf.printFileExt(file, ".zip");
+		lf.printExt(file, "jpg");
 		
 		System.out.println("******************************");
 		System.out.println();
 		
 		StringBuffer s = new StringBuffer("");
-		int c;
-		while (reader.read() != -1) {
-			c = reader.read();
-//			System.out.print((char) c);
-		    s.append(c);
+		String temp;
+		while (reader.readLine() != null) {
+			temp = reader.readLine();
+//			System.out.println(temp);
+		    s.append(temp);
 		   
 		}
 		

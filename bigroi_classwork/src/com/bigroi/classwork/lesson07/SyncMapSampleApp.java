@@ -12,11 +12,20 @@ public class SyncMapSampleApp implements Runnable {
 	Map<String, String> map;
 	List<String> list;
 	
-	SyncMapSampleApp() {
-		map = new HashMap<String, String>();
+	// если используем объекты-коллекции, к которым доступ будут осуществлять несколько потоков,
+	// 		создаем их с помощью Collections.synchronized[CollectionType](map);
+	// 		или используем  объекты-коллекции Concurrent[CollectionType]
+	// объекты-коллекции Concurrent[CollectionType] работают быстрее, 
+	// 		чем объекты, созданные с помощью Collections.synchronized[CollectionType]
+	
+	SyncMapSampleApp() {		
 		list = Collections.synchronizedList( new ArrayList<String>());
+		
+		// map = new HashMap<String, String>();
 		// map = Collections.synchronizedMap(map);
-		//map = new ConcurrentHashMap<String, String>();
+		
+		map = new ConcurrentHashMap<String, String>(); 
+		 
 	}
 
 	public static void main(String[] args) {
@@ -31,6 +40,7 @@ public class SyncMapSampleApp implements Runnable {
 
 	@Override
 	public void run() {
+		// что-то делаем с коллециями :)
 		System.out.println(Thread.currentThread().getName() + " started");
 		for(int i=0; i< 10; i++) {
 			map.put("key" + i, "value" + i);
@@ -39,8 +49,7 @@ public class SyncMapSampleApp implements Runnable {
 			}
 			try {
 			Thread.sleep(2);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch (InterruptedException e) {			
 			e.printStackTrace();
 		}
 			list.add(""+i);

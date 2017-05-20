@@ -7,7 +7,13 @@ public class ThreadSampleApp {
 		String curThreadName = currentThread.getName();
 		System.out.printf("%s started\n", curThreadName);
 		
+		// для запуска нового потока создаем класс CounterThread
+		// наследуем его от класса java.lang.Thread
+		// в классе CounterThread переопределяем метод run()		
 		Thread counterThread0 = new CounterThread();
+		
+		// по вызову метода start() - сообщаем JVM / опрерационной системе, что поток готов к запуску
+		// при запуске потоке вызовется переопределtнный метод counterThread0.run()
 		counterThread0.start();
 		
 		Thread counterThread1 = new CounterThread();		
