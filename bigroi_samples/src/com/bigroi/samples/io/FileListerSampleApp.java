@@ -1,10 +1,14 @@
 package com.bigroi.samples.io;
 
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
 public class FileListerSampleApp {
 
 	public static void main(String[] args) {
-		System.out.println();
-		FileLister fileLister = new FileLister(System.out);
-		fileLister.list("c:\\Program Files\\Java");
+		PrintWriter writer = new PrintWriter( new OutputStreamWriter(System.out) );
+		
+		FileLister fileLister = new FileLister("c:\\Program Files\\Java");
+		fileLister.list(writer);
 	}
 }

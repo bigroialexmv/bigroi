@@ -1,23 +1,18 @@
 package com.bigroi.samples.io;
 
 import java.io.File;
-import java.io.PrintStream;
+import java.io.PrintWriter;
 
 public class FileLister {
 	
-	private PrintStream out;
+	private File file;
 	
-	public FileLister(PrintStream out) {
-		this.out = out;
+	public FileLister(String pathname) {
+		this.file = new File(pathname);
 	}
 	
-	public void list(String pathname) {
-		File file = new File(pathname);
-		list(file);
-	}
-	
-	public void list(File file) {
-		list(file, 1);
+	public void list(PrintWriter out) {
+		list(file, 1, out);
 	}
 	
 	/**
@@ -25,7 +20,7 @@ public class FileLister {
 	 * @param file
 	 * @param level - уровень вложенности папки либо файла
 	 */
-	protected void list(File file, int level) {
+	protected void list(File file, int level, PrintWriter out) {
 		long fileLength = countLength(file);	// вычисляем размер файла или директории
 		
 		if ( file.isDirectory() ) {
@@ -34,23 +29,24 @@ public class FileLister {
 			
 			// сначала показываем поддиректории
 			File[] files = file.listFiles( (f) -> f.isDirectory() );
-			listFiles(files, level + 1);
+			listFiles(files, level + 1, out);
 			
 			// потом показываем файлы
 			files = file.listFiles( (f) -> f.isFile() );
-			listFiles(files, level + 1);
+			listFiles(files, level + 1, out);
 		} else {
 			out.printf("%" + (level*2-1) + "s|- %-40s  file %s\n", " ", file.getName(), countLength(file));
 		}
 	}
 
-	private void listFiles(File[] files, int level) {
+	private void listFiles(File[] files, int level, PrintWriter out) {
 		if (files != null) {
 			for(File f : files) {
-				list(f, level + 1);
+				list(f, level + 1, out);
 			}
 		}
 	}
+	
 	/**
 	 * Вычисляет размер папки или файла
 	 * @param file
