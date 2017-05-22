@@ -24,8 +24,8 @@ class ClientServer implements Runnable {
 	public void run() {		
 		while(true) {
 			try {
-				String message = dis.readUTF();
-				System.out.println(message);
+				String message = dis.readUTF();		// получаем сообщения от сервера
+				System.out.println(message);		// и выводим их в консоль
 			} catch (IOException e) {				
 				e.printStackTrace();
 			}
@@ -35,31 +35,33 @@ class ClientServer implements Runnable {
 }
 
 
-public class MeessengerClientApp {
+public class MessengerClientApp {
 
 	public static void main(String[] args) {
 		Socket socket = null;
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Your name: ");
+		System.out.print("Your name: ");
 		String name = scanner.nextLine();
 
 		try {
-			socket = new Socket("192.168.0.100", 9988);
+			socket = new Socket("localhost", 9988);				// подключаемся к серверному сокету
 			
-			ClientServer server = new ClientServer(socket);
-			
+			ClientServer server = new ClientServer(socket);		// создаем объект типа ClientServer с метом run(),
+																// в котором будем слушать / читать сообщения от сервера
 			Thread thread = new Thread(server);
 			thread.start();
 			
 			OutputStream os = socket.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(os);
-			dos.writeUTF(name);
+			dos.writeUTF(name);									// посылаем серверу введенное в консоли имя
 			
 			while(true) {
-				String message = scanner.nextLine();				
-				dos.writeUTF(message);
-				if ("quit".equals(message)) {
+				System.out.println(name + ": ");			
+				String message = scanner.nextLine();			// читаем сообщения из консоли	
+				dos.writeUTF(message);							// и отправляем их на сервер
+				dos.flush();
+				if ("quit".equals(message)) {					// выходим из цикла как только получаем команду quit
 					break;
 				}
 			}
