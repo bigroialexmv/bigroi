@@ -56,8 +56,7 @@ public class MessengerClientApp {
 			DataOutputStream dos = new DataOutputStream(os);
 			dos.writeUTF(name);									// посылаем серверу введенное в консоли имя
 			
-			while(true) {
-				System.out.println(name + ": ");			
+			while(true) {						
 				String message = scanner.nextLine();			// читаем сообщения из консоли	
 				dos.writeUTF(message);							// и отправляем их на сервер
 				dos.flush();
