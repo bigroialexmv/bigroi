@@ -108,7 +108,7 @@ public class HttpRequestSampleApp {
 			out.write(line.getBytes());
 			out.write(CRLF);				
 		}
-		out.write("\r\n".getBytes());
+		out.write(CRLF);
 		out.flush();
 	}
 
