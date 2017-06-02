@@ -9,6 +9,8 @@ public class Product {
 	private String name;
 	
 	private BigDecimal price;
+	
+	private String description;
 
 	/**
 	 * Creates new product
@@ -29,8 +31,9 @@ public class Product {
 		this.price = price;
 	}
 	
-	public Product(String code, String name, double price) {	
+	public Product(String code, String name, double price, String description) {	
 		this(code, name, new BigDecimal(price) );
+		this.description = description;
 	}
 
 	public String getCode() {
@@ -45,6 +48,11 @@ public class Product {
 		return price;
 	}
 	
+	
+	public String getDescription() {
+		return description;
+	}
+
 	@Override
 	public String toString() {
 		String s = String.format("Product {name=%s, code=%s, price=%s}", name, code, price);
