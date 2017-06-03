@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product 
+	xmlns="http://www.bigroi.by/product" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.bigroi.by/product product.xsd">	
+  <code>001</code>
+  <name>Nokia</name>  
+  <price>200.0</price>
+<!--   <description>Nokia description</description>  -->
+</product>
