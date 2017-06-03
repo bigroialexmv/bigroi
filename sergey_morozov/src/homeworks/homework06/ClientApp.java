@@ -3,9 +3,7 @@ package homeworks.homework06;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -34,13 +32,17 @@ public class ClientApp {
 			dos.flush();
 			
 			try (FileOutputStream writer = new FileOutputStream(file)) {
-				byte [] buffer = new byte[1024];
+				byte [] buffer = new byte[64*1024];
 				int temp;
-				while ((temp = dis.read()) != -1) {
-					writer.write(buffer,0,temp);
+				int i = 0;
+				while ((temp = dis.read(buffer)) != -1) {
+					writer.write(buffer,i,temp);
+					i+=temp;
 				   }
 				
 			}
+			dis.close();
+			dos.close();
 			
 			
 			

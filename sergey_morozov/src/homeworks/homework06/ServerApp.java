@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,15 +35,17 @@ public class ServerApp {
 				File file = new File(fileName);
 				if (file.exists()) {
 					try (FileInputStream reader = new FileInputStream (file)) {
-						byte[] buffer = new byte[1024];
+						byte[] buffer = new byte[64*1024];
 						int temp;
-						while ((temp = reader.read()) != -1) {
-							dos.write(buffer, 0, temp);
-							
+						int i = 0;
+						while ((temp = reader.read(buffer)) != -1) {
+							dos.write(buffer, i, temp);
+							i+=temp;
 						   }
 						dos.flush();
 					
 					}
+					dos.close();
 				}
 					
 					} catch (IOException e) {
