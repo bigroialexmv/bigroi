@@ -15,7 +15,8 @@ public class DOMParserSampleApp {
 		DocumentBuilder db;
 		try {
 			db = dbf.newDocumentBuilder();
-			Document doc = db.parse(new File("data.xml"));
+			Document doc = db.parse(
+					new File("C:\\Users\\םנ615\\git\\bigroi\\bigroi_classwork\\xml_samples\\product_001.xml"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
