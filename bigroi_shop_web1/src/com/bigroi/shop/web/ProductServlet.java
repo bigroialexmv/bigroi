@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +49,10 @@ public class ProductServlet extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter();
 		if (code == null) {
-			showAllProducts(writer);
+			//showAllProducts(writer);
+			request.setAttribute("products", codeProductMap);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/allproducts.jsp");
+			dispatcher.forward(request, response);
 		} else {
 			Product p = codeProductMap.get(code);
 			writer.append(
@@ -120,6 +124,10 @@ public class ProductServlet extends HttpServlet {
 		Product product = new Product(code, name, Double.parseDouble(price), null);
 		codeProductMap.put(code, product);
 		response.getOutputStream().print("Product addedd successfully");
+		
+		response.sendRedirect("/bigroi_shop_web1/products");
+		
+		//request.getRequestDispatcher("").
 	}
 
 	/**
