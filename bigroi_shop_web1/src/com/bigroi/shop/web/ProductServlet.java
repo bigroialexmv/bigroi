@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import com.bigroi.shop.model.Product;
 /**
  * Servlet implementation class ProductServlet
  */
-@WebServlet({ "/products", "/product" })
+@WebServlet({ "/products", "/product", "/createproduct" })
 public class ProductServlet extends HttpServlet {
 	
 	private Map<String, Product> codeProductMap = new ConcurrentHashMap<String, Product>();
@@ -48,7 +49,10 @@ public class ProductServlet extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter();
 		if (code == null) {
-			showAllProducts(writer);
+			//showAllProducts(writer);
+			request.setAttribute("products", codeProductMap);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/allproducts.jsp");
+			dispatcher.forward(request, response);
 		} else {
 			Product p = codeProductMap.get(code);
 			writer.append(
@@ -103,6 +107,8 @@ public class ProductServlet extends HttpServlet {
 		writer.append(			
 			"		</tbody>"+
 			"	</table>	"+
+			" <br/> " +
+			" <a href=\"/bigroi_shop_web1/newproduct.jsp\">New product</a>" +
 			"</body>"+
 			"</html>");
 	}
@@ -111,8 +117,17 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String code = request.getParameter("code");
+		String name = request.getParameter("name");
+		String price = request.getParameter("price");
+		
+		Product product = new Product(code, name, Double.parseDouble(price), null);
+		codeProductMap.put(code, product);
+		response.getOutputStream().print("Product addedd successfully");
+		
+		response.sendRedirect("/bigroi_shop_web1/products");
+		
+		//request.getRequestDispatcher("").
 	}
 
 	/**
