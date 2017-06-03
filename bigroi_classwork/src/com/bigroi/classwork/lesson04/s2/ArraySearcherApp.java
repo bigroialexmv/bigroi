@@ -1,6 +1,7 @@
 package com.bigroi.classwork.lesson04.s2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArraySearcherApp {
@@ -10,6 +11,14 @@ public class ArraySearcherApp {
 		a[0] = getRandomInteger();
 		for (int i = 1; i < a.length; i++) {
 			a[i] = a[i-1] + getRandomInteger() + 1;
+		}
+		return a;
+	}
+	
+	static int[] createRandomArray(int length) {
+		int[] a = new int[length];		
+		for (int i = 0; i < a.length; i++) {
+			a[i] = getRandomInteger();
 		}
 		return a;
 	}
@@ -30,16 +39,18 @@ public class ArraySearcherApp {
 	}
 
 	public static void main(String[] args) {
-		int[] a = createRandomSortedArray(100000);
-		int e = 858;
+		int[] a = createRandomArray(10000000);
+		Arrays.sort(a);		
+		//print(a);
 	
 		List<ArraySearcher> searchers = new ArrayList<ArraySearcher>();		
-		searchers.add( new LinearArraySearcher() );
+//		searchers.add( new LinearArraySearcher() );
 		searchers.add( new BinaryArraySearcher() );
+		searchers.add( new StandardArraySearcher() );
 		
-		PerformanceMeasurer measurer = new PerformanceMeasurer(10000);		
+		PerformanceMeasurer measurer = new PerformanceMeasurer(1000000);		
 		for(ArraySearcher searcher : searchers) {		
-			ArraySearchExecutor executor = new ArraySearchExecutor(searcher, a, e);
+			ArraySearchExecutor executor = new ArraySearchExecutor(searcher, a);
 			measurer.measureAndReport(executor);
 		}
 		

@@ -47,7 +47,7 @@ class Child extends Parent {
 	}
 	
 	/**
-	 * toString() - метод, объявленный в классе Object,
+	 *  Класс Child переопределил метод toString() - метод, объявленный в классе Object,
 	 */
 	public String toString() {
 		return "class Child {name=" + name + "}";

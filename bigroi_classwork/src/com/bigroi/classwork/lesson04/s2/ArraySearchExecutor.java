@@ -6,7 +6,13 @@ public class ArraySearchExecutor implements Executable {
 	
 	private int[] array;
 	
-	private int elem;
+	private Integer elem;
+	
+	public ArraySearchExecutor(ArraySearcher searcher, int[] array) {
+		super();
+		this.searcher = searcher;
+		this.array = array;		
+	}
 
 	public ArraySearchExecutor(ArraySearcher searcher, int[] array, int elem) {
 		super();
@@ -16,8 +22,14 @@ public class ArraySearchExecutor implements Executable {
 	}
 
 	@Override
-	public void execute() {		
-		searcher.search(array, elem);
+	public void execute() {
+		int e = 0;
+		if (elem == null) {
+			e = (int) (Math.random() * 10000);
+		} else {
+			e = elem;
+		}
+		searcher.search(array, e);
 	}
 	
 	@Override

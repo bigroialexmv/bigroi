@@ -67,7 +67,7 @@ class PathXY extends PathX {
 	public double getDistance(){
 		double dX = super.getDistance();
 		double dY = sub(y,y0);
-		return Math.sqrt(Math.pow(dX) + Math.pow(dY));
+		return Math.sqrt(Math.pow(dX, dY) + Math.pow(dY, dY));
 	}
 	
 }
