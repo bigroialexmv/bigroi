@@ -103,6 +103,8 @@ public class ProductServlet extends HttpServlet {
 		writer.append(			
 			"		</tbody>"+
 			"	</table>	"+
+			" <br/> " +
+			" <a href=\"/bigroi_shop_web1/newproduct.jsp\">New product</a>" +
 			"</body>"+
 			"</html>");
 	}
