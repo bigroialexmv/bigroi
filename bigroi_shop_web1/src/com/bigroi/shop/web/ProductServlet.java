@@ -16,7 +16,7 @@ import com.bigroi.shop.model.Product;
 /**
  * Servlet implementation class ProductServlet
  */
-@WebServlet({ "/products", "/product" })
+@WebServlet({ "/products", "/product", "/createproduct" })
 public class ProductServlet extends HttpServlet {
 	
 	private Map<String, Product> codeProductMap = new ConcurrentHashMap<String, Product>();
@@ -111,8 +111,13 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String code = request.getParameter("code");
+		String name = request.getParameter("name");
+		String price = request.getParameter("price");
+		
+		Product product = new Product(code, name, Double.parseDouble(price), null);
+		codeProductMap.put(code, product);
+		response.getOutputStream().print("Product addedd successfully");
 	}
 
 	/**
