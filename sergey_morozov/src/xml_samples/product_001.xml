@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:product xmlns:tns="http://www.bigroi.by/product" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.bigroi.by/product product.xsd">
+  <tns:code>001</tns:code>
+  <tns:name>Nokia</tns:name>
+  <tns:price>200.0</tns:price>
+  <tns:description>Nokia description</tns:description>
+</tns:product>

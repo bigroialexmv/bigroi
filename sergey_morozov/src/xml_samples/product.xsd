@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://www.bigroi.by/product"
+ xmlns:tns="http://www.bigroi.by/product" 
+ elementFormDefault="qualified">
+ <element name="product">
+   <complexType>
+    
+    <sequence>
+      <element name="code" type="string" minOccurs="1" maxOccurs="1"> </element>
+      <element name="name" type="string"> </element>
+      <element name="price" type="decimal"> </element>
+      <element name="description" type="string" minOccurs="0" maxOccurs="1"> </element>
+    </sequence>
+   </complexType>
+  </element>
+</schema>
