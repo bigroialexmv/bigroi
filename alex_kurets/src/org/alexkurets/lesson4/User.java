@@ -2,7 +2,12 @@ package org.alexkurets.lesson4;
 
 public class User /*extends Object*/ {
 	String name;
+	
+	@Range(min=12,max=99)
 	int age;
+	
+	
+	
 	public User(String name, int age) {
 		super();
 		this.name = name;
