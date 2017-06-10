@@ -36,6 +36,14 @@ public class Product {
 		this.description = description;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public void setCode(Integer code) {
+		this.code = code.toString();
+	}
+
 	public String getCode() {
 		return code;
 	}

@@ -16,7 +16,7 @@ Database password: XRvjw6EMj1
 Port number: 3306
  */
 
-public class MySqlTest {
+public class JdbcSelectSampleApp {
 	
 
 	public static void main(String[] args) {
