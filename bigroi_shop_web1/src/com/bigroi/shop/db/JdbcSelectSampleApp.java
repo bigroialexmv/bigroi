@@ -26,7 +26,7 @@ public class JdbcSelectSampleApp {
 			conn = DriverManager.getConnection("jdbc:mysql://sql11.freesqldatabase.com:3306/sql11179471?" +
 			                                   "user=sql11179471&password=XRvjw6EMj1");
 			stmt = conn.createStatement();
-			String sql = "SELECT CODE, NAME, PRICE FROM PRODUCT";
+			String sql = "SELECT CODE, NAME, PRICE FROM PRODUCT ORDER BY NAME DESC, CODE ASC";
 			ResultSet rs = stmt.executeQuery(sql);
 			while ( rs.next() ) {
 				int code = rs.getInt("CODE");
