@@ -1,3 +1,5 @@
+-- https://www.wwwmaster.ru/13-internet-i-bazy-dannyh-chast-02-normalizaciya-bazy-dannyh
+
 SELECT * FROM USER;
 UPDATE USER SET PHONE='+375292222221', UPDT_TMS=CURRENT_TIMESTAMP WHERE USER_ID=2;
 
