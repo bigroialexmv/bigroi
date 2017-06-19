@@ -5,8 +5,8 @@ SELECT * FROM PURCHASE_ORDER_PRODUCT;
 SELECT PO.USER_ID, U.LAST_NAME, POP.ORDER_ID as ORDR, POP.PRODUCT_CODE, P.NAME 
 	FROM PURCHASE_ORDER_PRODUCT as POP
 		INNER JOIN PRODUCT as P ON POP.PRODUCT_CODE=P.CODE
-		INNER JOIN purchase_order as PO ON POP.ORDER_ID=PO.ORDER_ID
-		inner join user as U on PO.USER_ID=U.USER_ID
+		INNER JOIN PURCHASE_ORDER as PO ON POP.ORDER_ID=PO.ORDER_ID
+		inner join USER as U on PO.USER_ID=U.USER_ID
 ;
 
 select POP.ORDER_ID, POP.PRODUCT_CODE, 
@@ -19,14 +19,14 @@ select SUM(POP.PRODUCT_QUANTITY * POP.PRODUCT_PRICE * (1 - POP.DISCOUNT / 100)) 
 	FROM PURCHASE_ORDER_PRODUCT as POP		
 ;
 
--- выбираем заказы с суммой и покупателем
+-- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 select 
 	SUM(POP.PRODUCT_QUANTITY * POP.PRODUCT_PRICE * (1 - POP.DISCOUNT / 100)) as TOTAL_PRICE,
 	POP.ORDER_ID,
 	U.LAST_NAME
 		FROM PURCHASE_ORDER_PRODUCT as POP
-			INNER JOIN purchase_order as PO ON POP.ORDER_ID=PO.ORDER_ID
-			inner join user as U on PO.USER_ID=U.USER_ID
+			INNER JOIN PURCHASE_ORDER as PO ON POP.ORDER_ID=PO.ORDER_ID
+			inner join USER as U on PO.USER_ID=U.USER_ID
 	group by POP.ORDER_ID
 union
 	select SUM(POP.PRODUCT_QUANTITY * POP.PRODUCT_PRICE * (1 - POP.DISCOUNT / 100)) as TOTAL_PRICE,
@@ -35,7 +35,7 @@ union
 	FROM PURCHASE_ORDER_PRODUCT as POP
 ;
 
--- выбираем макс стоимость товаров по заказам
+-- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 select 
 	MAX(POP.PRODUCT_QUANTITY * POP.PRODUCT_PRICE * (1 - POP.DISCOUNT / 100)) as MAX_PRICE,
 	POP.ORDER_ID, POP.PRODUCT_CODE, P.NAME,
@@ -55,7 +55,7 @@ union
 
 select * from PURCHASE_ORDER_PRODUCT;
 
--- заказы 
+-- пїЅпїЅпїЅпїЅпїЅпїЅ 
 select SUM(PRODUCT_QUANTITY), ORDER_ID from PURCHASE_ORDER_PRODUCT
 group by ORDER_ID
 having SUM(PRODUCT_QUANTITY) >= 3 
