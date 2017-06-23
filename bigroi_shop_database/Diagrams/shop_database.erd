@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="shop_database" time="201706161748">
+	<entities>
+		<data-source id="mysql5-15cb05fb793-679346dd16a1d769">
+			<entity id="1" name="PRODUCT" fq-name="sql11179471.PRODUCT">
+				<path name="sql11179471"/>
+			</entity>
+			<entity id="2" name="PURCHASE_ORDER" fq-name="sql11179471.PURCHASE_ORDER">
+				<path name="sql11179471"/>
+			</entity>
+			<entity id="3" name="PURCHASE_ORDER_PRODUCT" fq-name="sql11179471.PURCHASE_ORDER_PRODUCT">
+				<path name="sql11179471"/>
+			</entity>
+			<entity id="4" name="USER" fq-name="sql11179471.`USER`">
+				<path name="sql11179471"/>
+			</entity>
+			<entity id="5" name="USER_ADDRESS" fq-name="sql11179471.USER_ADDRESS">
+				<path name="sql11179471"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="PURCHASE_ORDER_USER_FK" fq-name="sql11179471.PURCHASE_ORDER.PURCHASE_ORDER_USER_FK" type="fk" pk-ref="2" fk-ref="4"/>
+		<relation name="PURCHASE_ORDER_PRODUCT_PRODUCT_FK" fq-name="sql11179471.PURCHASE_ORDER_PRODUCT.PURCHASE_ORDER_PRODUCT_PRODUCT_FK" type="fk" pk-ref="3" fk-ref="1"/>
+		<relation name="PURCHASE_ORDER_PRODUCT_PURCHASE_ORDER_FK" fq-name="sql11179471.PURCHASE_ORDER_PRODUCT.PURCHASE_ORDER_PRODUCT_PURCHASE_ORDER_FK" type="fk" pk-ref="3" fk-ref="2"/>
+		<relation name="USER_ADDRESS_USER_FK" fq-name="sql11179471.USER_ADDRESS.USER_ADDRESS_USER_FK" type="fk" pk-ref="5" fk-ref="4"/>
+	</relations>
+	<notes/>
+</diagram>

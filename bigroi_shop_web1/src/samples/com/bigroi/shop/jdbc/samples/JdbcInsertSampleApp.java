@@ -1,4 +1,4 @@
-package com.bigroi.shop.db;
+package com.bigroi.shop.jdbc.samples;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,7 +40,7 @@ public class JdbcInsertSampleApp {
 			String sql = sqlb.toString();
 			System.out.println(sql);
 			
-			// берем сгенерированный базой code продукта
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ code пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			stmt.execute(sql, Statement.RETURN_GENERATED_KEYS );
 			ResultSet rs = stmt.getGeneratedKeys();
 			System.out.println(rs.getMetaData().getColumnName(1));

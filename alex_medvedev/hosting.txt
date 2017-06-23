@@ -1,0 +1,15 @@
+ovh.com
+
+vps424546.ovh.net
+
+Username:  root
+Password:  gCTqV3G1
+
+Your VPS's IPv4 address is: 147.135.209.151
+Your VPS's IPv6 address is: 2001:41d0:0601:1100:0000:0000:0000:098b
+
+Host: vps424546.ovh.net
+Port number: 3306
+Database name: bshop
+Database user: bteam
+Database password: BTeam_123456

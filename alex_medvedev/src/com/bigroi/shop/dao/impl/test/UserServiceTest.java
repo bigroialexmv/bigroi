@@ -9,16 +9,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bigroi.shop.dao.impl.UserDaoImpl;
+import com.bigroi.shop.appcontext.ApplicationContext;
 import com.bigroi.shop.model.User;
+import com.bigroi.shop.service.UserService;
 
-public class UserDaoImplTest {
+public class UserServiceTest {
 	
-	private UserDaoImpl userDao;
+	private static UserService userService;
 	
-	@BeforeClass
+	private static ApplicationContext appContext;
+	
+	@BeforeClass	
 	public static void beforeTests() {
-		//System.out.println("BeforeClass");
+		System.out.println("BeforeClass");
+		appContext = ApplicationContext.getInstance();
+		userService = appContext.getService("userService", UserService.class);
 	}
 	
 	@AfterClass
@@ -29,8 +34,7 @@ public class UserDaoImplTest {
 	@Before
 	public void beforeTest() {
 		//System.out.println("Before");
-		System.out.println("------------------------");
-		userDao = new UserDaoImpl();
+		System.out.println("------------------------");		
 	}
 	
 	@After
@@ -47,8 +51,8 @@ public class UserDaoImplTest {
 	public void testFindAll() {
 		System.out.println("testFindAll");
 		try {
-			int count = userDao.count();
-			List<User> users = userDao.findAll();
+			int count = userService.countAll();
+			List<User> users = userService.findAll();
 			for(User user : users) {
 				System.out.println(user);
 			}
@@ -60,9 +64,9 @@ public class UserDaoImplTest {
 	}
 	
 	@Test
-	public void testCount() {
+	public void testCountAll() {
 		try {
-			int count = userDao.count();
+			int count = userService.countAll();
 			System.out.println("testCount: " + count);
 		} catch (Exception e) {
 			e.printStackTrace();

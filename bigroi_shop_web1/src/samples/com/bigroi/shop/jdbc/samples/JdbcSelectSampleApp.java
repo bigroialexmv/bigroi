@@ -1,4 +1,4 @@
-package com.bigroi.shop.db;
+package com.bigroi.shop.jdbc.samples;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
