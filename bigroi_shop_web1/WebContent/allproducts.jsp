@@ -22,7 +22,7 @@
 				<th style="text-align: right;">Price</th>
 			</tr>
 		</thead>
-		<tbody>			
+		<tbody>	
 			<%for(Product p : codeProductMap.values()) { %>
 			<tr>
 				<td style="text-align: left;">
