@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User {
 	
-	private int id;
+	private Integer id;
 	
 	private String firstName;
 	
@@ -20,8 +20,29 @@ public class User {
 	private Date updated;
 	
 	private List<UserAddress> adresses;
+	
+	public User() {
+		
+	}
+	
+	public User(String firstName, String lastName, String email, String phone) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;		
+	}
 
-	public int getId() {
+	public User(Integer id, String firstName, String lastName, String email, String phone) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 

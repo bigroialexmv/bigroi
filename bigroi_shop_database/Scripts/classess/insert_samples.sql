@@ -1,4 +1,6 @@
 -- mysqld --skip-grant-tables;
+-- mysql> create database bigroi_shop DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
 
 select * from product;
 select * from user;
@@ -14,6 +16,23 @@ select * from user_address;
 insert into user_address(USER_ID, CITY, STREET_ADDR)
 values ( (select USER_ID from user where LAST_NAME='Medvedev'), 'Minsk', 'ul. J. Kolasa, 1');
 
+select * from purchase_order;
+
+select * from product;
+select * from purchase_order_product;
+
 start transaction;
-insert into purchase_order(USER_ID, STATUS_CD, )
+
+insert into purchase_order(USER_ID, DLRY_ADDR_ID, DLRY_DATE)
+values (18, 5, current_date);
+
+insert into purchase_order_product(ORDER_ID, PRODUCT_CODE, PRODUCT_PRICE, DISCOUNT, PRODUCT_QUANTITY)
+values (last_insert_id(), 43, (select PRICE from product where code=43), 5, 2 );
+
+insert into purchase_order_product(ORDER_ID, PRODUCT_CODE, PRODUCT_PRICE, DISCOUNT, PRODUCT_QUANTITY)
+values (last_insert_id(), 45, (select PRICE from product where code=45), 5, 1 );
+
 commit;
+
+
+rollback;
